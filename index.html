@@ -18,7 +18,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=14">
+<link rel="stylesheet" href="styles.css?v=15">
 <script>
   (function () {
     var t = (location.pathname.match(/(teal|maroon|emerald|black)/) || [])[1] || new URLSearchParams(location.search).get("theme") || "emerald";
@@ -209,126 +209,97 @@
     </div>
   </section>
 
-  <!-- bridal sets: real photographs, one set at a time -->
+  <!-- bridal sets: an ivory catalogue of real photographs, one set at a time -->
   <section class="sets" id="sets" aria-labelledby="sets-title">
-    <div class="container">
-      <div class="sets__head">
-        <div>
-          <p class="sets__eyebrow">Complete bridal sets</p>
-          <h2 class="sets__title" id="sets-title">Haram, necklace and jhumkas, made together</h2>
-        </div>
-        <div class="sets__tabs" role="tablist" aria-label="Bridal sets">
-          <span class="sets__pill" aria-hidden="true"></span>
-          <button type="button" role="tab" id="tab-peacock" aria-controls="set-peacock" aria-selected="true" class="is-on">Peacock Nakshi</button>
-          <button type="button" role="tab" id="tab-ruby" aria-controls="set-ruby" aria-selected="false">Lakshmi Ruby</button>
-          <button type="button" role="tab" id="tab-mandapam" aria-controls="set-mandapam" aria-selected="false">Temple Mandapam</button>
-          <button type="button" role="tab" id="tab-kasu" aria-controls="set-kasu" aria-selected="false">Lakshmi Kasu</button>
-        </div>
+    <div class="container sets__wrap">
+      <div class="sets__intro">
+        <p class="sets__eyebrow">The bridal catalogue</p>
+        <h2 class="sets__title" id="sets-title">Complete bridal sets</h2>
+        <ol class="sets__index" role="tablist" aria-label="Bridal sets">
+            <li><button type="button" role="tab" id="tab-peacock" aria-controls="set-peacock" aria-selected="true" class="is-on"><span>01</span>Peacock Nakshi</button></li>
+            <li><button type="button" role="tab" id="tab-ruby" aria-controls="set-ruby" aria-selected="false"><span>02</span>Lakshmi Ruby</button></li>
+            <li><button type="button" role="tab" id="tab-mandapam" aria-controls="set-mandapam" aria-selected="false"><span>03</span>Temple Mandapam</button></li>
+            <li><button type="button" role="tab" id="tab-kasu" aria-controls="set-kasu" aria-selected="false"><span>04</span>Lakshmi Kasu</button></li>
+        </ol>
       </div>
-      <article class="set is-active" id="set-peacock" role="tabpanel" aria-labelledby="tab-peacock">
-        <div class="set__stage">
-          <span class="set__count">01 / 04</span>
-          <div class="set__photo">
-              <img src="assets/img/sets/peacock-0.webp" alt="Peacock Nakshi Set, the full set" class="is-on">
-              <img src="assets/img/sets/peacock-1.webp" alt="Peacock Nakshi Set, the haram and necklace from the side" loading="lazy">
-              <img src="assets/img/sets/peacock-2.webp" alt="Peacock Nakshi Set, the pendant up close" loading="lazy">
-              <img src="assets/img/sets/peacock-3.webp" alt="Peacock Nakshi Set, the jhumkas" loading="lazy" data-fit="contain">
+      <div class="sets__stage">
+        <article class="set is-active" id="set-peacock" role="tabpanel" aria-labelledby="tab-peacock">
+          <figure class="set__plate">
+            <div class="set__photo">
+              <img src="assets/img/sets/peacock-0.webp" alt="Peacock Nakshi Set, the full set" data-cap="the full set" class="is-on">
+              <img src="assets/img/sets/peacock-1.webp" alt="Peacock Nakshi Set, the haram and necklace from the side" data-cap="the haram and necklace from the side" loading="lazy">
+              <img src="assets/img/sets/peacock-2.webp" alt="Peacock Nakshi Set, the pendant up close" data-cap="the pendant up close" loading="lazy">
+              <img src="assets/img/sets/peacock-3.webp" alt="Peacock Nakshi Set, the jhumkas" data-cap="the jhumkas" loading="lazy" data-fit="contain">
+            </div>
+            <div class="set__bar"><i></i></div>
+            <figcaption>Plate I <span aria-hidden="true">&middot;</span> <em>the full set</em></figcaption>
+          </figure>
+          <div class="set__text">
+            <div class="set__num">01</div>
+            <h3>Peacock Nakshi Set</h3>
+            <p>Pairs of carved peacocks frame a Lakshmi mandapam pendant, set with emerald green and ruby stones and finished with gold bead drops.</p>
+            <dl><dt>Set</dt><dd>Long haram, necklace, jhumkas</dd><dt>Work</dt><dd>Nakshi, carved in relief</dd><dt>Stones</dt><dd>Ruby and emerald green</dd></dl>
+            <a class="set__cta" data-wa="Hello Sri Dev Jewels, I would like to know more about the Peacock Nakshi Set." href="#">Enquire</a>
           </div>
-          <div class="set__progress"><i></i></div>
-        </div>
-        <div class="set__side">
-          <p class="sets__eyebrow">Set 01</p>
-          <h3>Peacock Nakshi Set</h3>
-          <div class="set__rule"></div>
-          <p class="set__desc">Pairs of carved peacocks frame a Lakshmi mandapam pendant, set with emerald green and ruby stones and finished with gold bead drops.</p>
-          <div class="set__includes"><span>Long haram</span><span>Necklace</span><span>Jhumkas</span></div>
-          <div class="set__thumbs">
-            <button type="button" aria-label="Show the full set" class="is-on"><img src="assets/img/sets/peacock-0.webp" alt="" loading="lazy"></button>
-            <button type="button" aria-label="Show the haram and necklace from the side"><img src="assets/img/sets/peacock-1.webp" alt="" loading="lazy"></button>
-            <button type="button" aria-label="Show the pendant up close"><img src="assets/img/sets/peacock-2.webp" alt="" loading="lazy"></button>
-            <button type="button" aria-label="Show the jhumkas"><img src="assets/img/sets/peacock-3.webp" alt="" loading="lazy"></button>
+        </article>
+        <article class="set" id="set-ruby" role="tabpanel" aria-labelledby="tab-ruby" aria-hidden="true">
+          <figure class="set__plate">
+            <div class="set__photo">
+              <img src="assets/img/sets/ruby-0.webp" alt="Lakshmi Ruby Set, the full set" data-cap="the full set" class="is-on" loading="lazy">
+              <img src="assets/img/sets/ruby-1.webp" alt="Lakshmi Ruby Set, the haram and necklace from the side" data-cap="the haram and necklace from the side" loading="lazy">
+              <img src="assets/img/sets/ruby-2.webp" alt="Lakshmi Ruby Set, the Lakshmi pendant up close" data-cap="the Lakshmi pendant up close" loading="lazy">
+              <img src="assets/img/sets/ruby-3.webp" alt="Lakshmi Ruby Set, the jhumkas" data-cap="the jhumkas" loading="lazy" data-fit="contain">
+            </div>
+            <div class="set__bar"><i></i></div>
+            <figcaption>Plate II <span aria-hidden="true">&middot;</span> <em>the full set</em></figcaption>
+          </figure>
+          <div class="set__text">
+            <div class="set__num">02</div>
+            <h3>Lakshmi Ruby Set</h3>
+            <p>Oval rose rubies along openwork gold panels, with Goddess Lakshmi carved in deep relief between two peacocks.</p>
+            <dl><dt>Set</dt><dd>Long haram, necklace, jhumkas</dd><dt>Work</dt><dd>Openwork panels, Lakshmi in relief</dd><dt>Stones</dt><dd>Rose ruby and emerald green</dd></dl>
+            <a class="set__cta" data-wa="Hello Sri Dev Jewels, I would like to know more about the Lakshmi Ruby Set." href="#">Enquire</a>
           </div>
-          <a class="btn btn--lux" data-wa="Hello Sri Dev Jewels, I would like to know more about the Peacock Nakshi Set." href="#">Enquire about this set</a>
-        </div>
-      </article>
-      <article class="set" id="set-ruby" role="tabpanel" aria-labelledby="tab-ruby" hidden>
-        <div class="set__stage">
-          <span class="set__count">02 / 04</span>
-          <div class="set__photo">
-              <img src="assets/img/sets/ruby-0.webp" alt="Lakshmi Ruby Set, the full set" class="is-on" loading="lazy">
-              <img src="assets/img/sets/ruby-1.webp" alt="Lakshmi Ruby Set, the haram and necklace from the side" loading="lazy">
-              <img src="assets/img/sets/ruby-2.webp" alt="Lakshmi Ruby Set, the Lakshmi pendant up close" loading="lazy">
-              <img src="assets/img/sets/ruby-3.webp" alt="Lakshmi Ruby Set, the jhumkas" loading="lazy" data-fit="contain">
+        </article>
+        <article class="set" id="set-mandapam" role="tabpanel" aria-labelledby="tab-mandapam" aria-hidden="true">
+          <figure class="set__plate">
+            <div class="set__photo">
+              <img src="assets/img/sets/mandapam-0.webp" alt="Temple Mandapam Set, the full set" data-cap="the full set" class="is-on" loading="lazy">
+              <img src="assets/img/sets/mandapam-1.webp" alt="Temple Mandapam Set, the haram and necklace from the side" data-cap="the haram and necklace from the side" loading="lazy">
+              <img src="assets/img/sets/mandapam-2.webp" alt="Temple Mandapam Set, the temple pendant up close" data-cap="the temple pendant up close" loading="lazy">
+              <img src="assets/img/sets/mandapam-3.webp" alt="Temple Mandapam Set, the jhumkas" data-cap="the jhumkas" loading="lazy" data-fit="contain">
+            </div>
+            <div class="set__bar"><i></i></div>
+            <figcaption>Plate III <span aria-hidden="true">&middot;</span> <em>the full set</em></figcaption>
+          </figure>
+          <div class="set__text">
+            <div class="set__num">03</div>
+            <h3>Temple Mandapam Set</h3>
+            <p>Goddess Lakshmi seated between temple pillars and dancing figures, under a tiered gopuram set with green drops.</p>
+            <dl><dt>Set</dt><dd>Long haram, necklace, jhumkas</dd><dt>Work</dt><dd>Temple mandapam, pillars and dancers</dd><dt>Stones</dt><dd>Emerald green drops and ruby</dd></dl>
+            <a class="set__cta" data-wa="Hello Sri Dev Jewels, I would like to know more about the Temple Mandapam Set." href="#">Enquire</a>
           </div>
-          <div class="set__progress"><i></i></div>
-        </div>
-        <div class="set__side">
-          <p class="sets__eyebrow">Set 02</p>
-          <h3>Lakshmi Ruby Set</h3>
-          <div class="set__rule"></div>
-          <p class="set__desc">Oval rose rubies along openwork gold panels, with Goddess Lakshmi carved in deep relief between two peacocks.</p>
-          <div class="set__includes"><span>Long haram</span><span>Necklace</span><span>Jhumkas</span></div>
-          <div class="set__thumbs">
-            <button type="button" aria-label="Show the full set" class="is-on"><img src="assets/img/sets/ruby-0.webp" alt="" loading="lazy"></button>
-            <button type="button" aria-label="Show the haram and necklace from the side"><img src="assets/img/sets/ruby-1.webp" alt="" loading="lazy"></button>
-            <button type="button" aria-label="Show the Lakshmi pendant up close"><img src="assets/img/sets/ruby-2.webp" alt="" loading="lazy"></button>
-            <button type="button" aria-label="Show the jhumkas"><img src="assets/img/sets/ruby-3.webp" alt="" loading="lazy"></button>
+        </article>
+        <article class="set" id="set-kasu" role="tabpanel" aria-labelledby="tab-kasu" aria-hidden="true">
+          <figure class="set__plate">
+            <div class="set__photo">
+              <img src="assets/img/sets/kasu-0.webp" alt="Lakshmi Kasu Set, the full set" data-cap="the full set" class="is-on" loading="lazy">
+              <img src="assets/img/sets/kasu-1.webp" alt="Lakshmi Kasu Set, the haram from the side" data-cap="the haram from the side" loading="lazy">
+              <img src="assets/img/sets/kasu-2.webp" alt="Lakshmi Kasu Set, the Lakshmi coins up close" data-cap="the Lakshmi coins up close" loading="lazy">
+              <img src="assets/img/sets/kasu-3.webp" alt="Lakshmi Kasu Set, the coin jhumkas" data-cap="the coin jhumkas" loading="lazy" data-fit="contain">
+            </div>
+            <div class="set__bar"><i></i></div>
+            <figcaption>Plate IV <span aria-hidden="true">&middot;</span> <em>the full set</em></figcaption>
+          </figure>
+          <div class="set__text">
+            <div class="set__num">04</div>
+            <h3>Lakshmi Kasu Set</h3>
+            <p>Rows of Lakshmi coins with ruby kemp drops, in a long haram and a short necklace, with matching coin jhumkas.</p>
+            <dl><dt>Set</dt><dd>Kasu haram, necklace, coin jhumkas</dd><dt>Work</dt><dd>Lakshmi coins, hand finished</dd><dt>Stones</dt><dd>Ruby kemp</dd></dl>
+            <a class="set__cta" data-wa="Hello Sri Dev Jewels, I would like to know more about the Lakshmi Kasu Set." href="#">Enquire</a>
           </div>
-          <a class="btn btn--lux" data-wa="Hello Sri Dev Jewels, I would like to know more about the Lakshmi Ruby Set." href="#">Enquire about this set</a>
-        </div>
-      </article>
-      <article class="set" id="set-mandapam" role="tabpanel" aria-labelledby="tab-mandapam" hidden>
-        <div class="set__stage">
-          <span class="set__count">03 / 04</span>
-          <div class="set__photo">
-              <img src="assets/img/sets/mandapam-0.webp" alt="Temple Mandapam Set, the full set" class="is-on" loading="lazy">
-              <img src="assets/img/sets/mandapam-1.webp" alt="Temple Mandapam Set, the haram and necklace from the side" loading="lazy">
-              <img src="assets/img/sets/mandapam-2.webp" alt="Temple Mandapam Set, the temple pendant up close" loading="lazy">
-              <img src="assets/img/sets/mandapam-3.webp" alt="Temple Mandapam Set, the jhumkas" loading="lazy" data-fit="contain">
-          </div>
-          <div class="set__progress"><i></i></div>
-        </div>
-        <div class="set__side">
-          <p class="sets__eyebrow">Set 03</p>
-          <h3>Temple Mandapam Set</h3>
-          <div class="set__rule"></div>
-          <p class="set__desc">Goddess Lakshmi seated between temple pillars and dancing figures, under a tiered gopuram set with green drops.</p>
-          <div class="set__includes"><span>Long haram</span><span>Necklace</span><span>Jhumkas</span></div>
-          <div class="set__thumbs">
-            <button type="button" aria-label="Show the full set" class="is-on"><img src="assets/img/sets/mandapam-0.webp" alt="" loading="lazy"></button>
-            <button type="button" aria-label="Show the haram and necklace from the side"><img src="assets/img/sets/mandapam-1.webp" alt="" loading="lazy"></button>
-            <button type="button" aria-label="Show the temple pendant up close"><img src="assets/img/sets/mandapam-2.webp" alt="" loading="lazy"></button>
-            <button type="button" aria-label="Show the jhumkas"><img src="assets/img/sets/mandapam-3.webp" alt="" loading="lazy"></button>
-          </div>
-          <a class="btn btn--lux" data-wa="Hello Sri Dev Jewels, I would like to know more about the Temple Mandapam Set." href="#">Enquire about this set</a>
-        </div>
-      </article>
-      <article class="set" id="set-kasu" role="tabpanel" aria-labelledby="tab-kasu" hidden>
-        <div class="set__stage">
-          <span class="set__count">04 / 04</span>
-          <div class="set__photo">
-              <img src="assets/img/sets/kasu-0.webp" alt="Lakshmi Kasu Set, the full set" class="is-on" loading="lazy">
-              <img src="assets/img/sets/kasu-1.webp" alt="Lakshmi Kasu Set, the haram from the side" loading="lazy">
-              <img src="assets/img/sets/kasu-2.webp" alt="Lakshmi Kasu Set, the Lakshmi coins up close" loading="lazy">
-              <img src="assets/img/sets/kasu-3.webp" alt="Lakshmi Kasu Set, the coin jhumkas" loading="lazy" data-fit="contain">
-          </div>
-          <div class="set__progress"><i></i></div>
-        </div>
-        <div class="set__side">
-          <p class="sets__eyebrow">Set 04</p>
-          <h3>Lakshmi Kasu Set</h3>
-          <div class="set__rule"></div>
-          <p class="set__desc">Rows of Lakshmi coins with ruby kemp drops, in a long haram and a short necklace, with matching coin jhumkas.</p>
-          <div class="set__includes"><span>Long haram</span><span>Necklace</span><span>Jhumkas</span></div>
-          <div class="set__thumbs">
-            <button type="button" aria-label="Show the full set" class="is-on"><img src="assets/img/sets/kasu-0.webp" alt="" loading="lazy"></button>
-            <button type="button" aria-label="Show the haram from the side"><img src="assets/img/sets/kasu-1.webp" alt="" loading="lazy"></button>
-            <button type="button" aria-label="Show the Lakshmi coins up close"><img src="assets/img/sets/kasu-2.webp" alt="" loading="lazy"></button>
-            <button type="button" aria-label="Show the coin jhumkas"><img src="assets/img/sets/kasu-3.webp" alt="" loading="lazy"></button>
-          </div>
-          <a class="btn btn--lux" data-wa="Hello Sri Dev Jewels, I would like to know more about the Lakshmi Kasu Set." href="#">Enquire about this set</a>
-        </div>
-      </article>
+        </article>
+      </div>
     </div>
   </section>
 
@@ -449,6 +420,6 @@
   <a data-wa href="#"><svg><use href="#i-wa"/></svg>WhatsApp</a>
 </nav>
 
-<script src="main.js?v=14" defer></script>
+<script src="main.js?v=15" defer></script>
 </body>
 </html>
