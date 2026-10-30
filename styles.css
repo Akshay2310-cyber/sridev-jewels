@@ -127,6 +127,27 @@ button { font: inherit; color: inherit; }
 .rail-dots button.is-on { width: 26px; background: var(--primary); }
 .tile span { position: absolute; z-index: 1; left: 0; right: 0; bottom: 14%; text-align: center; font: 400 24px/1 var(--caps); text-transform: uppercase; color: var(--white); letter-spacing: .02em; }
 
+/* ---------- bridal sets (real photographs on velvet) ---------- */
+.sets { padding-block: 72px; background: var(--primary-dark); color: var(--white); }
+.sets__eyebrow { font: 400 12px/1 var(--caps); letter-spacing: .24em; text-transform: uppercase; color: var(--gold); }
+.sets__title { margin-top: 12px; font-size: clamp(28px, 3vw, 40px); line-height: 1.12; max-width: 22ch; }
+.sets__tabs { display: flex; gap: 10px; margin: 28px 0 32px; overflow-x: auto; scrollbar-width: none; }
+.sets__tabs::-webkit-scrollbar { display: none; }
+.sets__tabs button { flex: none; min-height: 40px; padding: 0 18px; border: 1px solid rgba(255, 255, 255, .28); border-radius: 999px; background: none; color: rgba(255, 255, 255, .85); font: 400 13px/1 var(--sans); cursor: pointer; transition: background-color .25s, color .25s, border-color .25s; }
+.sets__tabs button.is-on { background: var(--gold); border-color: var(--gold); color: #1A1A1A; }
+.set { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); gap: 48px; align-items: center; }
+.set[hidden] { display: none; }
+.set.is-active .set__main img { animation: set-in .6s ease both; }
+@keyframes set-in { from { opacity: 0; transform: scale(1.02); } to { opacity: 1; transform: none; } }
+.set__main { aspect-ratio: 4 / 5; overflow: hidden; background: #2A0F16; touch-action: pan-y; }
+.set__main img { width: 100%; height: 100%; object-fit: cover; }
+.set__side h3 { font-size: clamp(26px, 2.6vw, 34px); line-height: 1.15; }
+.set__side p { margin: 14px 0 24px; max-width: 46ch; color: rgba(255, 255, 255, .78); font-size: 15px; }
+.set__thumbs { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; margin-bottom: 28px; max-width: 440px; }
+.set__thumbs button { aspect-ratio: 1; padding: 0; border: 1px solid transparent; background: #2A0F16; overflow: hidden; cursor: pointer; opacity: .6; transition: opacity .25s, border-color .25s; }
+.set__thumbs button.is-on, .set__thumbs button:hover { opacity: 1; border-color: var(--gold); }
+.set__thumbs img { width: 100%; height: 100%; object-fit: cover; }
+
 /* ---------- featured piece ---------- */
 .feature { display: grid; grid-template-columns: 1fr 1fr; }
 .feature__cell { position: relative; min-height: 720px; overflow: hidden; }
@@ -269,6 +290,11 @@ button { font: inherit; color: inherit; }
   .feature__steps span { font-size: 14px; }
   .feature__tag { left: 16px; bottom: 16px; }
   .cards { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px 12px; }
+  .sets { padding-block: 44px; }
+  .sets__tabs { margin: 20px calc(-1 * var(--gutter)); padding-inline: var(--gutter); }
+  .set { grid-template-columns: 1fr; gap: 18px; }
+  .set__thumbs { gap: 8px; margin-bottom: 22px; max-width: none; }
+  .set__side p { margin: 10px 0 18px; font-size: 14px; }
   .card h3 { font-size: 15px; }
 
   .split { grid-template-columns: 1fr; min-height: 0; width: min(100% - 2 * var(--gutter), var(--page)); margin-inline: auto; }

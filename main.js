@@ -95,6 +95,35 @@
     railTimer = setInterval(tick, 4000);
   }
 
+  // bridal sets: tabs switch the set, thumbnails (or a swipe on the big photo) switch the view
+  var setTabs = $$(".sets__tabs button");
+  setTabs.forEach(function (tab) {
+    tab.addEventListener("click", function () {
+      setTabs.forEach(function (t) {
+        var on = t === tab, panel = document.getElementById(t.getAttribute("aria-controls"));
+        t.classList.toggle("is-on", on); t.setAttribute("aria-selected", on);
+        panel.hidden = !on; panel.classList.toggle("is-active", on);
+      });
+      tab.scrollIntoView({ block: "nearest", inline: "center", behavior: reduced ? "auto" : "smooth" });
+    });
+  });
+  $$(".set").forEach(function (set) {
+    var main = $(".set__main img", set), thumbs = $$(".set__thumbs button", set), cur = 0;
+    var pick = function (i) {
+      cur = (i + thumbs.length) % thumbs.length;
+      thumbs.forEach(function (b, k) { b.classList.toggle("is-on", k === cur); });
+      main.src = thumbs[cur].getAttribute("data-src"); main.alt = thumbs[cur].getAttribute("data-alt");
+    };
+    thumbs.forEach(function (b, i) { b.addEventListener("click", function () { pick(i); }); });
+    var x0 = null, box = $(".set__main", set);
+    box.addEventListener("touchstart", function (e) { x0 = e.touches[0].clientX; }, { passive: true });
+    box.addEventListener("touchend", function (e) {
+      if (x0 === null) return;
+      var dx = e.changedTouches[0].clientX - x0; x0 = null;
+      if (Math.abs(dx) > 40) pick(cur + (dx < 0 ? 1 : -1));
+    });
+  });
+
   // trust row becomes a swipe carousel on phones; keep its dots in step
   var trust = $("#trust"), tdots = $$(".trust__dots i");
   trust.addEventListener("scroll", function () {
