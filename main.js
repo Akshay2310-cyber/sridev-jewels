@@ -58,18 +58,42 @@
   show(0);
   play();
 
-  // collections rail arrows
-  var rail = $("#rail");
+  // collections carousel: arrows, dots, swipe, and a gentle auto-advance every 4s
+  var rail = $("#rail"), tiles = $$(".tile", rail), rdots = $(".rail-dots");
   var prev = $('[data-rail="prev"]'), next = $('[data-rail="next"]');
-  var step = function () { var t = $(".tile", rail); return t ? t.getBoundingClientRect().width + 3 : 300; };
-  var syncArrows = function () {
+  var step = function () { return tiles.length > 1 ? tiles[1].offsetLeft - tiles[0].offsetLeft : rail.clientWidth; };
+  var atEnd = function () { return rail.scrollLeft + rail.clientWidth >= rail.scrollWidth - 4; };
+  var index = function () { return Math.round(rail.scrollLeft / step()); };
+  var go = function (i) { rail.scrollTo({ left: Math.max(0, i) * step(), behavior: "smooth" }); };
+  tiles.forEach(function (t, i) {
+    var b = document.createElement("button");
+    b.type = "button"; b.setAttribute("aria-label", "Show " + t.textContent.trim());
+    b.addEventListener("click", function () { go(i); hold(); });
+    rdots.appendChild(b);
+  });
+  var rbtns = $$("button", rdots);
+  var syncRail = function () {
+    var i = atEnd() ? tiles.length - 1 : index();
     prev.disabled = rail.scrollLeft < 4;
-    next.disabled = rail.scrollLeft + rail.clientWidth >= rail.scrollWidth - 4;
+    rbtns.forEach(function (b, j) { b.classList.toggle("is-on", j === i); });
   };
-  prev.addEventListener("click", function () { rail.scrollBy({ left: -step(), behavior: "smooth" }); });
-  next.addEventListener("click", function () { rail.scrollBy({ left: step(), behavior: "smooth" }); });
-  rail.addEventListener("scroll", syncArrows, { passive: true });
-  syncArrows();
+  var advance = function () { if (atEnd()) go(0); else go(index() + 1); };
+  prev.addEventListener("click", function () { go(index() - 1); hold(); });
+  next.addEventListener("click", function () { advance(); hold(); });
+  rail.addEventListener("scroll", syncRail, { passive: true });
+  syncRail();
+
+  // auto-advance only while the rail is on screen and nobody is touching it
+  var railTimer = null, railSeen = false, railHeld = 0;
+  var tick = function () { if (railSeen && Date.now() > railHeld && !document.hidden) advance(); };
+  var hold = function () { railHeld = Date.now() + 8000; };
+  ["pointerdown", "touchstart", "wheel"].forEach(function (ev) { rail.addEventListener(ev, hold, { passive: true }); });
+  rail.addEventListener("mouseenter", function () { railHeld = Infinity; });
+  rail.addEventListener("mouseleave", hold);
+  if (!reduced && "IntersectionObserver" in window) {
+    new IntersectionObserver(function (es) { railSeen = es[0].isIntersecting; }, { threshold: 0.5 }).observe(rail);
+    railTimer = setInterval(tick, 4000);
+  }
 
   // trust row becomes a swipe carousel on phones; keep its dots in step
   var trust = $("#trust"), tdots = $$(".trust__dots i");
@@ -84,22 +108,22 @@
   syncDetails();
   mq.addEventListener("change", syncDetails);
 
-  // today's rate (IBJA benchmark via /api/rates); nothing is shown if it cannot be loaded
+  // today's Coimbatore / Chennai retail rate via /api/rates; nothing is shown if it cannot be loaded
   var inr = function (n) { return "₹" + Math.round(n).toLocaleString("en-IN"); };
   fetch("/api/rates", { headers: { accept: "application/json" } })
     .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
     .then(function (d) {
-      if (!d || !d.gold22 || !d.silver) throw new Error("incomplete");
+      if (!d || !d.gold22) throw new Error("incomplete");
       var ann = $("#ann-rate");
       ann.textContent = "Today's 22K gold " + inr(d.gold22) + "/g";
       ann.hidden = false;
-      $("#trust-rate").textContent = "22K gold is " + inr(d.gold22) + " per gram today, " + d.date + ". IBJA benchmark, before GST and making charges.";
+      $("#trust-rate").textContent = "22K gold is " + inr(d.gold22) + " per gram today in " + d.city + ", " + d.date + ". Before GST and making charges.";
       $("#rates-mini").innerHTML =
         "<dt>22 Karat</dt><dd>" + inr(d.gold22) + "/g</dd>" +
         "<dt>24 Karat</dt><dd>" + inr(d.gold24) + "/g</dd>" +
-        "<dt>18 Karat</dt><dd>" + inr(d.gold18) + "/g</dd>" +
-        "<dt>Silver</dt><dd>" + inr(d.silver) + "/g</dd>";
-      $("#rates-note").textContent = "IBJA benchmark for " + d.date + (d.session ? " " + d.session : "") + ", per gram, before GST and making charges.";
+        (d.gold18 ? "<dt>18 Karat</dt><dd>" + inr(d.gold18) + "/g</dd>" : "") +
+        (d.silver ? "<dt>Silver</dt><dd>" + inr(d.silver) + "/g</dd>" : "");
+      $("#rates-note").textContent = d.city + " rate for " + d.date + ", per gram, before GST and making charges.";
     })
     .catch(function () {
       $("#rates-mini").innerHTML = '<dt>Call us</dt><dd><a href="tel:+' + PHONE + '">+91 80726 79578</a></dd>';
