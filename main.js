@@ -95,34 +95,61 @@
     railTimer = setInterval(tick, 4000);
   }
 
-  // bridal sets: tabs switch the set, thumbnails (or a swipe on the big photo) switch the view
-  var setTabs = $$(".sets__tabs button");
-  setTabs.forEach(function (tab) {
-    tab.addEventListener("click", function () {
-      setTabs.forEach(function (t) {
-        var on = t === tab, panel = document.getElementById(t.getAttribute("aria-controls"));
-        t.classList.toggle("is-on", on); t.setAttribute("aria-selected", on);
-        panel.hidden = !on; panel.classList.toggle("is-active", on);
-      });
-      tab.scrollIntoView({ block: "nearest", inline: "center", behavior: reduced ? "auto" : "smooth" });
-    });
-  });
-  $$(".set").forEach(function (set) {
-    var main = $(".set__main img", set), thumbs = $$(".set__thumbs button", set), cur = 0;
-    var pick = function (i) {
-      cur = (i + thumbs.length) % thumbs.length;
-      thumbs.forEach(function (b, k) { b.classList.toggle("is-on", k === cur); });
-      main.src = thumbs[cur].getAttribute("data-src"); main.alt = thumbs[cur].getAttribute("data-alt");
+  // bridal sets: gold pill slides between sets; each set's photos crossfade every 4.5s,
+  // tapping a thumbnail or swiping the photo jumps, and the timer rests for a while after a touch
+  var setTabs = $$(".sets__tabs button"), pill = $(".sets__pill"), setsBox = $("#sets");
+  var DELAY = 4500, setTimer = null, setHeld = 0, setsSeen = false, active = null;
+  var placePill = function (tab) {
+    pill.style.width = tab.offsetWidth + "px";
+    pill.style.transform = "translateX(" + tab.offsetLeft + "px)";
+  };
+  var setsApi = $$(".set").map(function (set) {
+    var photos = $$(".set__photo img", set), thumbs = $$(".set__thumbs button", set), bar = $(".set__progress i", set), cur = 0;
+    var restartBar = function () {
+      bar.classList.remove("is-running"); void bar.offsetWidth;
+      if (!reduced) { bar.style.setProperty("--set-delay", DELAY + "ms"); bar.classList.add("is-running"); }
     };
-    thumbs.forEach(function (b, i) { b.addEventListener("click", function () { pick(i); }); });
-    var x0 = null, box = $(".set__main", set);
-    box.addEventListener("touchstart", function (e) { x0 = e.touches[0].clientX; }, { passive: true });
-    box.addEventListener("touchend", function (e) {
+    var show = function (i) {
+      cur = (i + photos.length) % photos.length;
+      photos.forEach(function (p, k) { p.classList.toggle("is-on", k === cur); });
+      thumbs.forEach(function (b, k) { b.classList.toggle("is-on", k === cur); });
+      restartBar();
+    };
+    thumbs.forEach(function (b, i) { b.addEventListener("click", function () { show(i); setHeld = Date.now() + 9000; }); });
+    var x0 = null, stage = $(".set__photo", set);
+    stage.addEventListener("touchstart", function (e) { x0 = e.touches[0].clientX; }, { passive: true });
+    stage.addEventListener("touchend", function (e) {
       if (x0 === null) return;
       var dx = e.changedTouches[0].clientX - x0; x0 = null;
-      if (Math.abs(dx) > 40) pick(cur + (dx < 0 ? 1 : -1));
+      if (Math.abs(dx) > 40) { show(cur + (dx < 0 ? 1 : -1)); setHeld = Date.now() + 9000; }
+    });
+    return { el: set, show: show, next: function () { show(cur + 1); }, open: function () {
+      set.hidden = false; set.classList.add("is-active");
+      requestAnimationFrame(function () { requestAnimationFrame(function () { set.classList.add("is-shown"); }); });
+      show(0);
+    }, close: function () { set.hidden = true; set.classList.remove("is-active", "is-shown"); } };
+  });
+  active = setsApi[0];
+  setTabs.forEach(function (tab, i) {
+    tab.addEventListener("click", function () {
+      setTabs.forEach(function (t) { var on = t === tab; t.classList.toggle("is-on", on); t.setAttribute("aria-selected", on); });
+      placePill(tab);
+      tab.scrollIntoView({ block: "nearest", inline: "center", behavior: reduced ? "auto" : "smooth" });
+      if (active !== setsApi[i]) { active.close(); active = setsApi[i]; active.open(); }
+      setHeld = Date.now() + 6000;
     });
   });
+  var settle = function () { placePill($(".sets__tabs button.is-on")); };
+  addEventListener("resize", settle);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(settle);
+  settle();
+  active.open();
+  if ("IntersectionObserver" in window) {
+    new IntersectionObserver(function (es) { setsSeen = es[0].isIntersecting; }, { threshold: 0.35 }).observe(setsBox);
+  }
+  if (!reduced) setTimer = setInterval(function () {
+    if (setsSeen && !document.hidden && Date.now() > setHeld) active.next();
+  }, DELAY);
 
   // trust row becomes a swipe carousel on phones; keep its dots in step
   var trust = $("#trust"), tdots = $$(".trust__dots i");
