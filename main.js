@@ -1,7 +1,8 @@
 (function () {
   "use strict";
 
-  var PHONE = "918072679578";
+  var PHONE = "918072679578";   // calls
+  var WHATSAPP = "918807966547"; // WhatsApp chats
   var $ = function (s, r) { return (r || document).querySelector(s); };
   var $$ = function (s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); };
   var reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -9,7 +10,7 @@
   // WhatsApp links carry a prefilled message from data-wa
   $$("[data-wa]").forEach(function (a) {
     var text = a.getAttribute("data-wa") || "Hello Sri Dev Jewels, I would like to know more about your jewellery.";
-    a.href = "https://wa.me/" + PHONE + "?text=" + encodeURIComponent(text);
+    a.href = "https://wa.me/" + WHATSAPP + "?text=" + encodeURIComponent(text);
     a.target = "_blank";
     a.rel = "noopener";
   });

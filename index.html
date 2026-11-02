@@ -18,7 +18,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=15">
+<link rel="stylesheet" href="styles.css?v=16">
 <script>
   (function () {
     var t = (location.pathname.match(/(teal|maroon|emerald|black)/) || [])[1] || new URLSearchParams(location.search).get("theme") || "emerald";
@@ -124,9 +124,21 @@
         <a class="btn" data-wa="Hello Sri Dev Jewels, I would like to know more about your temple jewellery." href="#">Enquire on WhatsApp</a>
       </div>
     </div>
+    <div class="slide">
+      <picture>
+        <source media="(max-width: 600px)" srcset="assets/img/v3/b-hero-kasu-v.webp">
+        <img src="assets/img/v3/b-hero-kasu.webp" alt="A woman in an ivory silk blouse wearing a long gold kasu malai with ruby kemp drops" loading="lazy">
+      </picture>
+      <div class="slide__text">
+        <h2>The Kasu Malai</h2>
+        <p>Rows of Lakshmi coins with ruby kemp drops, made in our own workshop.</p>
+        <a class="btn" data-wa="Hello Sri Dev Jewels, I would like to know more about the Kasu Malai." href="#">Enquire about the Kasu Malai</a>
+      </div>
+    </div>
     <div class="dots" role="tablist" aria-label="Choose slide">
       <button type="button" class="is-active" aria-label="Slide 1"></button>
       <button type="button" aria-label="Slide 2"></button>
+      <button type="button" aria-label="Slide 3"></button>
     </div>
   </section>
 
@@ -152,26 +164,22 @@
     <div class="rail-dots" role="group" aria-label="Choose a collection"></div>
   </section>
 
-  <!-- featured piece + craft -->
+  <!-- craft -->
   <section class="section" aria-labelledby="feature-title">
     <div class="container feature">
-      <div class="feature__cell">
-        <img class="feature__model" src="assets/img/v3/b-kasu-neck.webp" alt="A woman in an ivory silk blouse wearing a long gold kasu malai" loading="lazy">
-        <a class="feature__tag" data-wa="Hello Sri Dev Jewels, I would like to know more about the Kasu Malai." href="#"><small>Featured piece</small>The Kasu Malai</a>
+      <div class="feature__copy">
+        <p class="feature__eyebrow">From our workbench</p>
+        <h2 class="feature__title" id="feature-title">Craftsmanship you can feel</h2>
+        <div class="feature__steps">
+          <span>Every design begins as a sketch</span>
+          <span>Carved by skilled hands, slowly</span>
+          <span>Finished to be worn for generations</span>
+        </div>
+        <a class="btn btn--gold" data-wa="Hello Sri Dev Jewels, I would like to see your work." href="#">See more of our work</a>
       </div>
       <div class="feature__cell feature__craft">
         <img class="feature__smith" src="assets/img/v3/b-goldsmith-2.webp" alt="A goldsmith's hands engraving a gold temple necklace at a wooden workbench" loading="lazy">
         <div class="feature__sweep" aria-hidden="true"></div>
-        <div class="feature__copy">
-          <p class="feature__eyebrow">From our workbench</p>
-          <h2 class="feature__title" id="feature-title">Craftsmanship you can feel</h2>
-          <div class="feature__steps">
-            <span>Every design begins as a sketch</span>
-            <span>Carved by skilled hands, slowly</span>
-            <span>Finished to be worn for generations</span>
-          </div>
-          <a class="btn btn--gold" data-wa="Hello Sri Dev Jewels, I would like to see your work." href="#">See more of our work</a>
-        </div>
       </div>
     </div>
   </section>
@@ -384,7 +392,7 @@
         <ul>
           <li><a href="tel:+918072679578">+91 80726 79578</a></li>
           <li><a href="mailto:sridevjewelmakers@gmail.com">sridevjewelmakers@gmail.com</a></li>
-          <li><a data-wa href="#">WhatsApp us</a></li>
+          <li><a data-wa href="#">WhatsApp +91 88079 66547</a></li>
         </ul>
       </details>
       <details open><summary><h3>Explore</h3></summary>
@@ -420,6 +428,6 @@
   <a data-wa href="#"><svg><use href="#i-wa"/></svg>WhatsApp</a>
 </nav>
 
-<script src="main.js?v=15" defer></script>
+<script src="main.js?v=16" defer></script>
 </body>
 </html>
