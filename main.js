@@ -142,6 +142,81 @@
     if (setsSeen && !document.hidden && Date.now() > setHeld) activeSet.next();
   }, DELAY);
 
+  // product pop-up: cards open it over the page; the address becomes #p/<product> so it can be
+  // shared, and the back button closes it. Photos come from assets/products/<product>/1.webp ...
+  var PRODUCTS = window.SRIDEV_PRODUCTS || {}, pv = $("#pv"), pvTrack = $("#pv-track"), pvThumbs = $("#pv-thumbs");
+  var pvPrev = $(".pv__arrow--prev", pv), pvNext = $(".pv__arrow--next", pv), pvOpen = null, pvPushed = false, pvLastFocus = null, rate22 = null;
+  var pvIndex = function () { return pvTrack.clientWidth ? Math.round(pvTrack.scrollLeft / pvTrack.clientWidth) : 0; };
+  var pvSync = function () {
+    var i = pvIndex(), n = pvTrack.children.length;
+    $("#pv-count").textContent = (i + 1) + " / " + n;
+    $$("button", pvThumbs).forEach(function (b, k) { b.classList.toggle("is-on", k === i); });
+    pvPrev.disabled = i === 0; pvNext.disabled = i >= n - 1;
+  };
+  var pvPrice = function () {
+    $("#pv-price").textContent = rate22 ? "By weight. 22K gold is " + rate22 + " per gram today; ask us for a quote." : "By weight, at today's gold rate. Ask us for a quote.";
+  };
+  var pvGo = function (i) { pvTrack.scrollTo({ left: i * pvTrack.clientWidth, behavior: reduced ? "auto" : "smooth" }); };
+  var pvFill = function (slug) {
+    var p = PRODUCTS[slug], figs = "", thumbs = "";
+    for (var i = 1; i <= p.photos; i++) {
+      var src = "assets/products/" + slug + "/" + i + ".webp";
+      figs += '<figure><img src="' + src + '" alt="' + p.name + ', photo ' + i + ' of ' + p.photos + '"' + (i > 2 ? ' loading="lazy"' : "") + "></figure>";
+      thumbs += '<button type="button" aria-label="Show photo ' + i + '"><img src="' + src + '" alt="" loading="lazy"></button>';
+    }
+    pvTrack.innerHTML = figs; pvThumbs.innerHTML = thumbs; pvTrack.scrollLeft = 0;
+    $$("button", pvThumbs).forEach(function (b, k) { b.addEventListener("click", function () { pvGo(k); }); });
+    $("#pv-group").textContent = p.group;
+    $("#pv-name").textContent = p.name;
+    $("#pv-text").textContent = p.text;
+    $("#pv-includes").textContent = p.includes;
+    pvPrice();
+    var link = location.origin + location.pathname + "#p/" + slug;
+    $("#pv-wa").href = "https://wa.me/" + WHATSAPP + "?text=" + encodeURIComponent("Hello Sri Dev Jewels, I would like to know more about the " + p.name + ". " + link);
+    pvSync();
+  };
+  var pvShow = function (slug, push) {
+    if (!PRODUCTS[slug]) return;
+    if (!pvOpen) pvLastFocus = document.activeElement;
+    pvFill(slug); pvOpen = slug;
+    if (push) { history.pushState({ pv: slug }, "", "#p/" + slug); pvPushed = true; }
+    pv.hidden = false; pvTrack.scrollLeft = 0; document.body.classList.add("pv-lock");
+    requestAnimationFrame(function () { requestAnimationFrame(function () { pv.classList.add("is-open"); pvSync(); }); });
+    $(".pv__close", pv).focus({ preventScroll: true });
+  };
+  var pvHide = function (fromHistory) {
+    if (!pvOpen) return;
+    pvOpen = null; pv.classList.remove("is-open"); document.body.classList.remove("pv-lock");
+    setTimeout(function () { if (!pvOpen) pv.hidden = true; }, reduced ? 0 : 450);
+    if (!fromHistory) {
+      if (pvPushed) history.back();
+      else history.replaceState(null, "", location.pathname + location.search);
+    }
+    pvPushed = false;
+    if (pvLastFocus) pvLastFocus.focus({ preventScroll: true });
+  };
+  var fromHash = function () { var m = location.hash.match(/^#p\/([a-z0-9-]+)$/); return m ? m[1] : null; };
+  $$("[data-product]").forEach(function (a) {
+    a.addEventListener("click", function (e) { e.preventDefault(); pvShow(a.getAttribute("data-product"), true); });
+  });
+  $$("[data-pv-close]", pv).forEach(function (b) { b.addEventListener("click", function () { pvHide(false); }); });
+  pvPrev.addEventListener("click", function () { pvGo(pvIndex() - 1); });
+  pvNext.addEventListener("click", function () { pvGo(pvIndex() + 1); });
+  pvTrack.addEventListener("scroll", function () { pvSync(); }, { passive: true });
+  addEventListener("popstate", function () { var s = fromHash(); if (s) pvShow(s, false); else pvHide(true); });
+  document.addEventListener("keydown", function (e) {
+    if (!pvOpen) return;
+    if (e.key === "Escape") pvHide(false);
+    else if (e.key === "ArrowRight") pvGo(pvIndex() + 1);
+    else if (e.key === "ArrowLeft") pvGo(pvIndex() - 1);
+    else if (e.key === "Tab") {
+      var f = $$("button, a[href]", pv).filter(function (el) { return el.offsetParent !== null && !el.disabled; });
+      if (e.shiftKey && document.activeElement === f[0]) { e.preventDefault(); f[f.length - 1].focus(); }
+      else if (!e.shiftKey && document.activeElement === f[f.length - 1]) { e.preventDefault(); f[0].focus(); }
+    }
+  });
+  if (fromHash()) pvShow(fromHash(), false);
+
   // trust row becomes a swipe carousel on phones; keep its dots in step
   var trust = $("#trust"), tdots = $$(".trust__dots i");
   trust.addEventListener("scroll", function () {
@@ -163,6 +238,8 @@
       if (!d || !d.gold22) throw new Error("incomplete");
       var ann = $("#ann-rate");
       ann.textContent = "Today's 22K gold " + inr(d.gold22) + "/g";
+      rate22 = inr(d.gold22);
+      if (pvOpen) pvPrice();
       ann.hidden = false;
       $("#trust-rate").textContent = "22K gold is " + inr(d.gold22) + " per gram today in " + d.city + ", " + d.date + ". Before GST and making charges.";
       $("#rates-mini").innerHTML =

@@ -18,7 +18,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=16">
+<link rel="stylesheet" href="styles.css?v=18">
 <script>
   (function () {
     var t = (location.pathname.match(/(teal|maroon|emerald|black)/) || [])[1] || new URLSearchParams(location.search).get("theme") || "emerald";
@@ -155,11 +155,11 @@
       </div>
     </div>
     <div class="rail" id="rail">
-      <a class="tile" data-wa="Hello Sri Dev Jewels, I would like to see your Lakshmi harams." href="#"><img src="assets/img/v3/p-lakshmi-mandapam.webp" alt="" loading="lazy"><span>Lakshmi Harams</span></a>
-      <a class="tile" data-wa="Hello Sri Dev Jewels, I would like to see your kasu malai designs." href="#"><img src="assets/img/v3/p-kasu-malai.webp" alt="" loading="lazy"><span>Kasu Malai</span></a>
-      <a class="tile" data-wa="Hello Sri Dev Jewels, I would like to see your nakshi sets." href="#"><img src="assets/img/v3/p-mayil-nakshi.webp" alt="" loading="lazy"><span>Nakshi</span></a>
-      <a class="tile" data-wa="Hello Sri Dev Jewels, I would like to see your kemp sets." href="#"><img src="assets/img/v3/p-lakshmi-kemp.webp" alt="" loading="lazy"><span>Kemp Sets</span></a>
-      <a class="tile" data-wa="Hello Sri Dev Jewels, I would like to see your antique jewellery." href="#"><img src="assets/img/v3/p-antique-nakshi.webp" alt="" loading="lazy"><span>Antique</span></a>
+      <a class="tile" href="#p/lakshmi-harams" data-product="lakshmi-harams"><img src="assets/img/v3/p-lakshmi-mandapam.webp" alt="" loading="lazy"><span>Lakshmi Harams</span></a>
+      <a class="tile" href="#p/kasu-malai" data-product="kasu-malai"><img src="assets/img/v3/p-kasu-malai.webp" alt="" loading="lazy"><span>Kasu Malai</span></a>
+      <a class="tile" href="#p/nakshi" data-product="nakshi"><img src="assets/img/v3/p-mayil-nakshi.webp" alt="" loading="lazy"><span>Nakshi</span></a>
+      <a class="tile" href="#p/kemp-sets" data-product="kemp-sets"><img src="assets/img/v3/p-lakshmi-kemp.webp" alt="" loading="lazy"><span>Kemp Sets</span></a>
+      <a class="tile" href="#p/antique" data-product="antique"><img src="assets/img/v3/p-antique-nakshi.webp" alt="" loading="lazy"><span>Antique</span></a>
     </div>
     <div class="rail-dots" role="group" aria-label="Choose a collection"></div>
   </section>
@@ -190,28 +190,28 @@
       <h2 class="title" id="loved-title">Our most loved pieces</h2>
       <div class="cards">
         <article class="card">
-          <a data-wa="Hello Sri Dev Jewels, I would like to know more about the Lakshmi Mandapam Set." href="#"><div class="card__img"><img src="assets/img/v3/p-lakshmi-mandapam.webp" alt="Lakshmi Mandapam haram and necklace set" loading="lazy"></div></a>
+          <a href="#p/lakshmi-mandapam-set" data-product="lakshmi-mandapam-set"><div class="card__img"><img src="assets/img/v3/p-lakshmi-mandapam.webp" alt="Lakshmi Mandapam haram and necklace set" loading="lazy"></div></a>
           <h3>Lakshmi Mandapam Set</h3>
           <p>Goddess Lakshmi in a carved temple mandapam, with ruby and green kemp.</p>
-          <a class="card__cta" data-wa="Hello Sri Dev Jewels, I would like to know more about the Lakshmi Mandapam Set." href="#">Enquire</a>
+          <a class="card__cta" href="#p/lakshmi-mandapam-set" data-product="lakshmi-mandapam-set">View &amp; enquire</a>
         </article>
         <article class="card">
-          <a data-wa="Hello Sri Dev Jewels, I would like to know more about the Mayil Nakshi Set." href="#"><div class="card__img"><img src="assets/img/v3/p-mayil-nakshi.webp" alt="Mayil Nakshi haram and necklace set" loading="lazy"></div></a>
+          <a href="#p/mayil-nakshi-set" data-product="mayil-nakshi-set"><div class="card__img"><img src="assets/img/v3/p-mayil-nakshi.webp" alt="Mayil Nakshi haram and necklace set" loading="lazy"></div></a>
           <h3>Mayil Nakshi Set</h3>
           <p>Peacocks carved in deep relief, set with emerald green and ruby stones.</p>
-          <a class="card__cta" data-wa="Hello Sri Dev Jewels, I would like to know more about the Mayil Nakshi Set." href="#">Enquire</a>
+          <a class="card__cta" href="#p/mayil-nakshi-set" data-product="mayil-nakshi-set">View &amp; enquire</a>
         </article>
         <article class="card">
-          <a data-wa="Hello Sri Dev Jewels, I would like to know more about the Lakshmi Kemp Set." href="#"><div class="card__img"><img src="assets/img/v3/p-lakshmi-kemp.webp" alt="Lakshmi Kemp haram and necklace set" loading="lazy"></div></a>
+          <a href="#p/lakshmi-kemp-set" data-product="lakshmi-kemp-set"><div class="card__img"><img src="assets/img/v3/p-lakshmi-kemp.webp" alt="Lakshmi Kemp haram and necklace set" loading="lazy"></div></a>
           <h3>Lakshmi Kemp Set</h3>
           <p>Broad gold panels and a Lakshmi pendant with rose pink kemp.</p>
-          <a class="card__cta" data-wa="Hello Sri Dev Jewels, I would like to know more about the Lakshmi Kemp Set." href="#">Enquire</a>
+          <a class="card__cta" href="#p/lakshmi-kemp-set" data-product="lakshmi-kemp-set">View &amp; enquire</a>
         </article>
         <article class="card">
-          <a data-wa="Hello Sri Dev Jewels, I would like to know more about the Antique Nakshi Set." href="#"><div class="card__img"><img src="assets/img/v3/p-antique-nakshi.webp" alt="Antique Nakshi haram and necklace set" loading="lazy"></div></a>
+          <a href="#p/antique-nakshi-set" data-product="antique-nakshi-set"><div class="card__img"><img src="assets/img/v3/p-antique-nakshi.webp" alt="Antique Nakshi haram and necklace set" loading="lazy"></div></a>
           <h3>Antique Nakshi Set</h3>
           <p>Carved bird links and sunflower medallions in antique gold.</p>
-          <a class="card__cta" data-wa="Hello Sri Dev Jewels, I would like to know more about the Antique Nakshi Set." href="#">Enquire</a>
+          <a class="card__cta" href="#p/antique-nakshi-set" data-product="antique-nakshi-set">View &amp; enquire</a>
         </article>
       </div>
     </div>
@@ -341,9 +341,9 @@
         <h2 class="title" id="bridal-title">The Bridal Edit</h2>
         <p class="sub">Three sets our brides come back to, worn together or on their own.</p>
         <ul class="edit__list">
-          <li><div class="thumb"><img src="assets/img/v3/p-lakshmi-mandapam.webp" alt="" loading="lazy"></div><div><h3>Lakshmi Mandapam Set</h3><p>The goddess in a carved<br>temple mandapam.</p></div></li>
-          <li><div class="thumb"><img src="assets/img/v3/p-kasu-malai.webp" alt="" loading="lazy"></div><div><h3>Kasu Malai</h3><p>Lakshmi coins with<br>ruby kemp drops.</p></div></li>
-          <li><div class="thumb"><img src="assets/img/v3/p-mayil-nakshi.webp" alt="" loading="lazy"></div><div><h3>Mayil Nakshi Set</h3><p>Peacocks in relief,<br>emerald and ruby.</p></div></li>
+          <li><a class="edit__row" href="#p/lakshmi-mandapam-set" data-product="lakshmi-mandapam-set"><span class="thumb"><img src="assets/img/v3/p-lakshmi-mandapam.webp" alt="" loading="lazy"></span><span><span class="edit__name">Lakshmi Mandapam Set</span><span class="edit__desc">The goddess in a carved<br>temple mandapam.</span></span></a></li>
+          <li><a class="edit__row" href="#p/kasu-malai" data-product="kasu-malai"><span class="thumb"><img src="assets/img/v3/p-kasu-malai.webp" alt="" loading="lazy"></span><span><span class="edit__name">Kasu Malai</span><span class="edit__desc">Lakshmi coins with<br>ruby kemp drops.</span></span></a></li>
+          <li><a class="edit__row" href="#p/mayil-nakshi-set" data-product="mayil-nakshi-set"><span class="thumb"><img src="assets/img/v3/p-mayil-nakshi.webp" alt="" loading="lazy"></span><span><span class="edit__name">Mayil Nakshi Set</span><span class="edit__desc">Peacocks in relief,<br>emerald and ruby.</span></span></a></li>
         </ul>
       </div>
       <div class="edit__img"><img src="assets/img/ai/bride-window-1280.webp" alt="A smiling bride in a cream and gold silk saree wearing layered gold temple jewellery" loading="lazy"></div>
@@ -428,6 +428,35 @@
   <a data-wa href="#"><svg><use href="#i-wa"/></svg>WhatsApp</a>
 </nav>
 
-<script src="main.js?v=16" defer></script>
+<!-- product pop-up, filled from products.js -->
+<div class="pv" id="pv" role="dialog" aria-modal="true" aria-labelledby="pv-name" hidden>
+  <div class="pv__backdrop" data-pv-close></div>
+  <div class="pv__sheet">
+    <button type="button" class="pv__close" data-pv-close aria-label="Close"><span></span><span></span></button>
+    <div class="pv__gallery">
+      <div class="pv__track" id="pv-track"></div>
+      <button type="button" class="pv__arrow pv__arrow--prev" aria-label="Previous photo"><svg><use href="#i-left"/></svg></button>
+      <button type="button" class="pv__arrow pv__arrow--next" aria-label="Next photo"><svg><use href="#i-right"/></svg></button>
+      <span class="pv__count" id="pv-count"></span>
+    </div>
+    <div class="pv__thumbs" id="pv-thumbs"></div>
+    <div class="pv__info">
+      <p class="pv__group" id="pv-group"></p>
+      <h2 class="pv__name" id="pv-name"></h2>
+      <p class="pv__text" id="pv-text"></p>
+      <dl class="pv__facts">
+        <dt>Includes</dt><dd id="pv-includes"></dd>
+        <dt>Made in</dt><dd>Our own workshop, by hand</dd>
+        <dt>Price</dt><dd id="pv-price">By weight, at today's gold rate. Ask us for a quote.</dd>
+      </dl>
+      <div class="pv__actions">
+        <a class="btn pv__wa" id="pv-wa" href="#" target="_blank" rel="noopener"><svg><use href="#i-wa"/></svg>Enquire on WhatsApp</a>
+        <a class="btn btn--line" href="tel:+918072679578"><svg><use href="#i-phone"/></svg>Call</a>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="products.js?v=17" defer></script>
+<script src="main.js?v=18" defer></script>
 </body>
 </html>
