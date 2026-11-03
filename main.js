@@ -159,12 +159,14 @@
   var pvGo = function (i) { pvTrack.scrollTo({ left: i * pvTrack.clientWidth, behavior: reduced ? "auto" : "smooth" }); };
   var pvFill = function (slug) {
     var p = PRODUCTS[slug], figs = "", thumbs = "";
+    var allContain = p.contain && p.contain.length === p.photos;
     for (var i = 1; i <= p.photos; i++) {
       var src = "assets/products/" + slug + "/" + i + ".webp";
       figs += '<figure><img src="' + src + '" alt="' + p.name + ', photo ' + i + ' of ' + p.photos + '"' + (i > 2 ? ' loading="lazy"' : "") + "></figure>";
       thumbs += '<button type="button" aria-label="Show photo ' + i + '"><img src="' + src + '" alt="" loading="lazy"></button>';
     }
     pvTrack.innerHTML = figs; pvThumbs.innerHTML = thumbs; pvTrack.scrollLeft = 0;
+    pvTrack.classList.toggle("pv__track--contain", !!allContain);
     $$("button", pvThumbs).forEach(function (b, k) { b.addEventListener("click", function () { pvGo(k); }); });
     $("#pv-group").textContent = p.group;
     $("#pv-name").textContent = p.name;
