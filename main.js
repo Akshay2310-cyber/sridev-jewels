@@ -1,7 +1,7 @@
 (function () {
   "use strict";
 
-  var PHONE = "918072679578";   // calls
+  var PHONE = "918807966547";   // calls
   var WHATSAPP = "918807966547"; // WhatsApp chats
   var $ = function (s, r) { return (r || document).querySelector(s); };
   var $$ = function (s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); };
