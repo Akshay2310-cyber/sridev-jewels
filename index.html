@@ -15,10 +15,15 @@
 <meta property="og:image" content="https://www.sridevjewels.in/assets/img/og.jpg">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="preload" href="assets/fonts/Forum-Regular.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/Cinzel-Variable.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" as="image" href="assets/img/v3/b-hero-ear-v.webp" media="(max-width: 600px)" fetchpriority="high">
+<link rel="preload" as="image" href="assets/img/v3/b-hero-ear.webp" media="(min-width: 601px)" fetchpriority="high">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=19">
+<link rel="preload" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap"></noscript>
+<link rel="stylesheet" href="styles.css?v=21">
+<link rel="prefetch" href="collections">
 <script>
   (function () {
     var t = (location.pathname.match(/(teal|maroon|emerald|black)/) || [])[1] || new URLSearchParams(location.search).get("theme") || "emerald";
@@ -72,7 +77,7 @@
     <button class="burger" type="button" aria-label="Open menu" aria-controls="drawer" aria-expanded="false"><svg><use href="#i-menu"/></svg></button>
     <a class="logo" href="#top" aria-label="Sri Dev Jewels, home"><span class="mark mark--h" role="img" aria-label="Sri Dev Jewels"></span></a>
     <nav class="nav" aria-label="Main">
-      <a href="#collections">Collections</a>
+      <a href="collections.html">Collections</a>
       <a href="#loved">Most Loved</a>
       <a href="#bridal">Bridal</a>
       <a href="#craft">Our Craft</a>
@@ -90,7 +95,7 @@
   <div class="drawer__bg" data-close></div>
   <nav class="drawer__panel" aria-label="Menu">
     <button class="drawer__close" type="button" aria-label="Close menu" data-close><svg width="22" height="22"><use href="#i-close"/></svg></button>
-    <a href="#collections">Collections</a>
+    <a href="collections.html">Collections</a>
     <a href="#loved">Most Loved</a>
     <a href="#bridal">Bridal</a>
     <a href="#craft">Our Craft</a>
@@ -110,7 +115,7 @@
       </picture>
       <div class="slide__text">
         <h2>Temple gold for the Coimbatore bride</h2>
-        <a class="btn" href="#collections">Explore the collection</a>
+        <a class="btn" href="collections.html">Explore the collection</a>
       </div>
     </div>
     <div class="slide">
@@ -155,11 +160,11 @@
       </div>
     </div>
     <div class="rail" id="rail">
-      <a class="tile" href="#p/lakshmi-harams" data-product="lakshmi-harams"><img src="assets/img/v3/p-lakshmi-mandapam.webp" alt="" loading="lazy"><span>Lakshmi Harams</span></a>
-      <a class="tile" href="#p/kasu-malai" data-product="kasu-malai"><img src="assets/img/v3/p-kasu-malai.webp" alt="" loading="lazy"><span>Kasu Malai</span></a>
-      <a class="tile" href="#p/nakshi" data-product="nakshi"><img src="assets/img/v3/p-mayil-nakshi.webp" alt="" loading="lazy"><span>Nakshi</span></a>
-      <a class="tile" href="#p/kemp-sets" data-product="kemp-sets"><img src="assets/img/v3/p-lakshmi-kemp.webp" alt="" loading="lazy"><span>Kemp Sets</span></a>
-      <a class="tile" href="#p/antique" data-product="antique"><img src="assets/img/v3/p-antique-nakshi.webp" alt="" loading="lazy"><span>Antique</span></a>
+      <a class="tile" href="collections?category=lakshmi-harams"><img src="assets/img/v3/p-lakshmi-mandapam.webp" alt="Lakshmi Harams Collection" loading="lazy"><span>Lakshmi Harams</span></a>
+      <a class="tile" href="collections?category=kasu-malai"><img src="assets/img/v3/p-kasu-malai.webp" alt="Kasu Malai Collection" loading="lazy"><span>Kasu Malai</span></a>
+      <a class="tile" href="collections?category=nakshi"><img src="assets/img/v3/p-mayil-nakshi.webp" alt="Nakshi Work Collection" loading="lazy"><span>Nakshi</span></a>
+      <a class="tile" href="collections?category=kemp-sets"><img src="assets/img/v3/p-lakshmi-kemp.webp" alt="Kemp Bridal Sets Collection" loading="lazy"><span>Kemp Sets</span></a>
+      <a class="tile" href="collections?category=antique"><img src="assets/img/v3/p-antique-nakshi.webp" alt="Antique Gold Collection" loading="lazy"><span>Antique</span></a>
     </div>
     <div class="rail-dots" role="group" aria-label="Choose a collection"></div>
   </section>
@@ -208,10 +213,10 @@
           <a class="card__cta" href="#p/lakshmi-kemp-set" data-product="lakshmi-kemp-set">View &amp; enquire</a>
         </article>
         <article class="card">
-          <a href="#p/antique-nakshi-set" data-product="antique-nakshi-set"><div class="card__img"><img src="assets/img/v3/p-antique-nakshi.webp" alt="Antique Nakshi haram and necklace set" loading="lazy"></div></a>
-          <h3>Antique Nakshi Set</h3>
-          <p>Carved bird links and sunflower medallions in antique gold.</p>
-          <a class="card__cta" href="#p/antique-nakshi-set" data-product="antique-nakshi-set">View &amp; enquire</a>
+          <a href="#p/kasu-malai" data-product="kasu-malai"><div class="card__img"><img src="assets/img/v3/p-kasu-malai.webp" alt="Kasu Malai temple coin haram set" loading="lazy"></div></a>
+          <h3>Kasu Malai</h3>
+          <p>Rows of Lakshmi coins overlap along the full length of the haram, with ruby kemp drops.</p>
+          <a class="card__cta" href="#p/kasu-malai" data-product="kasu-malai">View &amp; enquire</a>
         </article>
       </div>
     </div>
@@ -422,7 +427,7 @@
 
 <nav class="tabbar" aria-label="Quick links">
   <a href="#top"><svg><use href="#i-home"/></svg>Home</a>
-  <a href="#collections"><svg><use href="#i-grid"/></svg>Collections</a>
+  <a href="collections.html"><svg><use href="#i-grid"/></svg>Collections</a>
   <a href="#rate"><svg><use href="#i-coin"/></svg>Gold Rate</a>
   <a href="tel:+918072679578"><svg><use href="#i-phone"/></svg>Call</a>
   <a data-wa href="#"><svg><use href="#i-wa"/></svg>WhatsApp</a>
@@ -456,7 +461,7 @@
     </div>
   </div>
 </div>
-<script src="products.js?v=17" defer></script>
-<script src="main.js?v=19" defer></script>
+<script src="products.js?v=21" defer></script>
+<script src="main.js?v=21" defer></script>
 </body>
 </html>
