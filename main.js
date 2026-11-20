@@ -162,8 +162,8 @@
     var allContain = p.contain && p.contain.length === p.photos;
     for (var i = 1; i <= p.photos; i++) {
       var src = "assets/products/" + slug + "/" + i + ".webp";
-      figs += '<figure><img src="' + src + '" alt="' + p.name + ', photo ' + i + ' of ' + p.photos + '"' + (i > 2 ? ' loading="lazy"' : "") + "></figure>";
-      thumbs += '<button type="button" aria-label="Show photo ' + i + '"><img src="' + src + '" alt="" loading="lazy"></button>';
+      figs += '<figure><img src="' + src + '" alt="' + p.name + ', photo ' + i + ' of ' + p.photos + '"' + (i > 2 ? ' loading="lazy"' : "") + ' decoding="async"></figure>';
+      thumbs += '<button type="button" aria-label="Show photo ' + i + '"><img src="' + src + '" alt="" loading="lazy" decoding="async"></button>';
     }
     pvTrack.innerHTML = figs; pvThumbs.innerHTML = thumbs; pvTrack.scrollLeft = 0;
     pvTrack.classList.toggle("pv__track--contain", !!allContain);
@@ -198,9 +198,14 @@
     if (pvLastFocus) pvLastFocus.focus({ preventScroll: true });
   };
   var fromHash = function () { var m = location.hash.match(/^#p\/([a-z0-9-]+)$/); return m ? m[1] : null; };
-  $$("[data-product]").forEach(function (a) {
-    a.addEventListener("click", function (e) { e.preventDefault(); pvShow(a.getAttribute("data-product"), true); });
+  document.addEventListener("click", function (e) {
+    var a = e.target.closest("[data-product]");
+    if (a) {
+      e.preventDefault();
+      pvShow(a.getAttribute("data-product"), true);
+    }
   });
+  window.pvShow = pvShow;
   $$("[data-pv-close]", pv).forEach(function (b) { b.addEventListener("click", function () { pvHide(false); }); });
   pvPrev.addEventListener("click", function () { pvGo(pvIndex() - 1); });
   pvNext.addEventListener("click", function () { pvGo(pvIndex() + 1); });
